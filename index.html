@@ -4,20 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rasca y Gana</title>
+  <!-- Fuente uniforme en todos los dispositivos -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
     }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: flex-start;
+      min-height: 100vh;
       background: #ffeef5;
-      overflow: hidden;
+      overflow-y: auto;
+      padding: 20px 10px;
     }
 
     h1 {
@@ -60,13 +63,15 @@
       border-radius: 12px;
       font-size: 1.2em;
       pointer-events: none;
-      font-family: 'Comic Sans MS';
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-align: center;
     }
 
     #replayBtn {
       display: none;
       margin-top: 20px;
-      padding: 10px 20px;
+      margin-bottom: 30px;
+      padding: 12px 24px;
       font-size: 1em;
       background-color: #ff85a2;
       border: none;
@@ -152,13 +157,14 @@
         }
       }
       const percent = clearPixels / (imgData.data.length / 4);
-      if (percent > 0.985 && !revealed) { // Cambiado a 98.5% para ganar
+      if (percent > 0.985 && !revealed) {
         revealed = true;
         canvas.style.pointerEvents = 'none';
         mensaje.style.display = 'none';
         winSound.play();
         showConfetti();
         replayBtn.style.display = 'inline-block';
+        replayBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
 
